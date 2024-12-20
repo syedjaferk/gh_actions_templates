@@ -5,6 +5,7 @@ on:
 
 jobs:
   mail:
+    runs-on: ubuntu-latest
     steps:
       - name: Print Name
         run: echo "Sending Mail"
