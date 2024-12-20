@@ -1,0 +1,26 @@
+name: "Send Mail"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  mail:
+    steps:
+      - name: Print Name
+        run: echo "Sending Mail"
+    
+      - name: Send Mail
+        if: ${{ always() }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+      
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+        
+          subject: ${{ github.job }} job of ${{ github.repository }} has  ${{ github.status }}
+          body: "Test Message in Github"
+          to:  syedjafer1997@gmail.com
+          from: Syed Jafer K
+
